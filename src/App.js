@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import DisplayBox from './components/DisplayBox';
+import BoxInput from './components/BoxInput';
+import { useState } from 'react';
 import './App.css';
 
 function App() {
+
+  const [color, setColor] = useState([]);
+
+  const generateBox = (newColor) => {
+    // setColor([...color, newColor]);
+    console.log(newColor)
+    const copyColors = [...color];
+    copyColors.push(newColor);
+    setColor(copyColors)
+    console.log(color);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BoxInput generateBox={generateBox}/>
+      <DisplayBox color={color}/>
     </div>
   );
 }
